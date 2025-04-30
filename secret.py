@@ -25,7 +25,7 @@ soyo_private_key = (n, d)
 soyo_public_key = (n, e)
 
 FLAG1 = r"NASA_HW11{blind_signing_is_dangerous}"
-FLAG2 = r"Anon's Secret Diary: Today, I went to a Mister Donut nearby and met Sumita Mana from Sumimi! She assured me it's safe to use a small public exponent in RSA encryption because RSA is super secure. I trust her completely, as she wouldn't lie to me! By the way, my secret flag is: NASA_HW11{hastad's_broadcast_attack}"
+FLAG2 = r"Anon's Secret Diary: Today, I went to a Mister Donut nearby and met Sumita Mana from Sumimi! She assured me it's safe to use a small public exponent in RSA encryption because RSA is super secure. I trust her completely, as she wouldn't lie to me! By the way, my secret flag is: NASA_HW11{wow_you_know_hastad's_broadcast_attack}"
 
 if __name__=="__main__":
     e,d,n = rsa_key_gen()
