@@ -1,6 +1,6 @@
 #!/usr/bin/env -S python3 -W ignore::DeprecationWarning
 
-import os, sys
+import os, sys, signal
 import socket
 import threading
 
@@ -11,6 +11,16 @@ TARGET2 = "anon.py"
 PORT2 = 11451
 
 HOST = "0.0.0.0"
+
+def reap_children(signum, frame):
+    # reap all exited children in a nonblocking way (WNOHANG) to prevent zombies
+    while True:
+        try:
+            pid, status = os.waitpid(-1, os.WNOHANG)
+        except ChildProcessError:
+            break
+        if pid == 0:
+            break
 
 def client_handler(conn, addr, target):
     print(f"Connection from {addr} for {target}")
@@ -44,6 +54,8 @@ def start_server(port, target):
             threading.Thread(target=client_handler, args=(conn, addr, target)).start()
 
 if __name__ == "__main__":
+    signal.signal(signal.SIGCHLD, reap_children)
+
     # start both servers
     t1 = threading.Thread(target=start_server, args=(PORT1, TARGET1), daemon=True)
     t2 = threading.Thread(target=start_server, args=(PORT2, TARGET2), daemon=True)
