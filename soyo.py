@@ -39,7 +39,7 @@ def show_pubkey(e, n):
 
 def sign_msg(d, n):
     msg = input_bytes('Please provide the message you\'d like me to sign:\n').strip(b"\n ")
-    if msg.startswith(b"name="):
+    if b"name=" in msg:
         print('I will not sign an ID for anyone. You must NEVER impersonate me!')
         return
     signature = pow(bytes_to_long(msg), d, n)
