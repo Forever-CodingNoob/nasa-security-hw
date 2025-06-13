@@ -38,7 +38,7 @@ def login():
 
     # check the validity of the signature
     n, e = soyo_public_key
-    if (pow(signature, e, n)-bytes_to_long(ID.encode()))%n != 0:
+    if pow(signature, e, n) != bytes_to_long(ID.encode()):
         print('Hey Soyorin! Welco... Wait a minute, you are NOT Soyo! The signature is invalid! Don\'t try to fool me >:(')
         exit()
 
