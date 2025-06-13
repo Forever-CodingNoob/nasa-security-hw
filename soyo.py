@@ -42,7 +42,11 @@ def sign_msg(d, n):
     if b"name=" in msg:
         print('I will not sign an ID for anyone. You must NEVER impersonate me!')
         return
-    signature = pow(bytes_to_long(msg), d, n)
+    number = bytes_to_long(msg)
+    if number >= n:
+        print('Message too long!')
+        return
+    signature = pow(number, d, n)
     print(f"Here is the signature: {signature}")
 
 def alarm(second):
