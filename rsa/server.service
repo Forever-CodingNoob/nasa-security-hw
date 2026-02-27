@@ -1,0 +1,14 @@
+[Unit]
+Description=Service to keep the server online
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/this/dir/
+ExecStart=/usr/bin/bash -c 'source ./venv/bin/activate && ./server.py'
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
