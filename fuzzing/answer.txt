@@ -1,0 +1,5 @@
+obf_func_212 -> double_free
+obf_func_111 -> null_deref
+obf_func_145 -> buffer_overflow
+obf_func_238 -> infinite_loop
+obf_func_242 -> stack_overflow
